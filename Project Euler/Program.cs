@@ -48,7 +48,22 @@ namespace Project_Euler
             //The prime factors of 13195 are 5, 7, 13 and 29.
             //What is the largest prime factor of the number 600851475143 ?
         {
-            return 0;
+            long sqrt = (long)Math.Sqrt(600851475143); // A prime fator of X can never be greater than sqrt(X)
+            long remainder = 600851475143;
+            long leastPrimeFactor = 0;
+            for (long i = 2; i < sqrt; i++)
+            {
+                while (remainder % i == 0)
+                {
+                    remainder /= i;
+                }
+                if (remainder == 1)
+                {
+                    leastPrimeFactor = i;
+                    break;
+                }
+            }
+            return leastPrimeFactor;
         }
 
     }
