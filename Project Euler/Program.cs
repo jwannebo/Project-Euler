@@ -44,29 +44,10 @@ namespace Project_Euler
             return runningSum;
         }
 
-        static int Problem3()
+        static long Problem3()
             //The prime factors of 13195 are 5, 7, 13 and 29.
             //What is the largest prime factor of the number 600851475143 ?
         {
-            List<long> primes = new List<long>();
-            for (long i = 2; i < 100; i++){
-                bool isPrime = true;
-                Object lock_ = new Object();
-                //parallel Sieve of Eratosthenes
-                Parallel.ForEach(primes, (prime) =>
-                {
-                    if (i % prime == 0)
-                    {
-                        lock(lock_)
-                            isPrime = false;
-                    }
-                });
-                if (isPrime) primes.Add(i);
-            }
-            foreach (long prime in primes)
-            {
-                Console.WriteLine(prime.ToString());
-            }
             return 0;
         }
 
