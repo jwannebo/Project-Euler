@@ -10,7 +10,7 @@ namespace Project_Euler
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(Problem3().ToString());
+            Console.WriteLine(Problem4().ToString());
             Console.ReadKey();
         }
 
@@ -64,6 +64,14 @@ namespace Project_Euler
                 }
             }
             return leastPrimeFactor;
+        }
+
+        static int Problem4()
+        //A palindromic number reads the same both ways.
+        //The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 × 99.
+        //Find the largest palindrome made from the product of two 3-digit numbers.
+        {
+            return 0;
         }
 
     }
