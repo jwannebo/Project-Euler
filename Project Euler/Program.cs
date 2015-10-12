@@ -35,11 +35,13 @@ namespace Project_Euler
             //By considering the terms in the Fibonacci sequence whose values do not exceed four million,
             //find the sum of the even-valued terms.
         {
-            for (int last = 0, current = 1; current < 100; current = last + (last = current))
+            int runningSum = 0;
+            for (int last = 0, current = 1; current < 4000000; current = last + (last = current))
             {
-                Console.WriteLine(current.ToString());
+                //Fibonacci for loop =D
+                if(current % 2 == 0) { runningSum += current; };
             }
-            return 0;
+            return runningSum;
         }
     }
 }
