@@ -10,7 +10,7 @@ namespace Project_Euler
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(Problem2().ToString());
+            Console.WriteLine(Problem3().ToString());
             Console.ReadKey();
         }
 
@@ -42,6 +42,13 @@ namespace Project_Euler
                 if(current % 2 == 0) { runningSum += current; };
             }
             return runningSum;
+        }
+
+        static int Problem3()
+            //The prime factors of 13195 are 5, 7, 13 and 29.
+            //What is the largest prime factor of the number 600851475143 ?
+        {
+            return 0;
         }
     }
 }
