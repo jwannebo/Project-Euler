@@ -71,7 +71,21 @@ namespace Project_Euler
         //The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 × 99.
         //Find the largest palindrome made from the product of two 3-digit numbers.
         {
-            return 0;
+            SortedSet<int> palindromes = new SortedSet<int>();
+            for ( int i = 100; i < 1000; i++)
+                for (int j = 100; j <1000; j++)
+                {
+                    int product = i * j;
+                    string prodStr = product.ToString();
+                    bool isPalindrome = true;
+
+                    for (int k = 0; k < prodStr.Count(); k++)
+                    {
+                        if (prodStr[k] != prodStr[prodStr.Count() -k -1]) isPalindrome = false;
+                    }
+                    if (isPalindrome) palindromes.Add(product);
+                }
+            return palindromes.Last();
         }
 
     }
