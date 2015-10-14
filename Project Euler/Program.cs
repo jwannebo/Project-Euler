@@ -10,7 +10,7 @@ namespace Project_Euler
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(Problem6().ToString());
+            Console.WriteLine(Problem7().ToString());
             Console.ReadKey();
         }
 
@@ -124,5 +124,11 @@ namespace Project_Euler
             return (list.Sum() * list.Sum()) - squaredList.Sum();
         }
 
+        static int Problem7()
+        //By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that the 6th prime is 13.
+        //What is the 10 001st prime number?
+        {
+            return 0;
+        }
     }
 }
