@@ -10,7 +10,7 @@ namespace Project_Euler
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(Problem8().ToString());
+            Console.WriteLine(Problem9().ToString());
             Console.ReadKey();
         }
 
@@ -160,6 +160,21 @@ namespace Project_Euler
                 if (maxProduct < product) maxProduct = product;
             }
             return maxProduct;
+        }
+
+        static int Problem9()
+        //There exists exactly one Pythagorean triplet for which a + b + c = 1000.
+        //Find the product abc, were a<b<c.
+        {
+            for (int a = 1; a < 999; a++)
+            {
+                for (int b = a + 1; b < 1000; b++)
+                {
+                    int c = 1000 - (a + b);
+                    if ((a * a + b * b) == (c * c)) return a*b*c; 
+                }
+            }
+            return -1;
         }
     }
 }
