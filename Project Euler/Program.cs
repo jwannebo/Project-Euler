@@ -119,7 +119,9 @@ namespace Project_Euler
         //Find the difference between the sum of the squares of the first one
         //hundred natural numbers and the square of the sum.
         {
-            return 0;
+            var list = new List<int>(Enumerable.Range(1,100));
+            var squaredList = list.Select(x => x * x);
+            return (list.Sum() * list.Sum()) - squaredList.Sum();
         }
 
     }
