@@ -10,7 +10,7 @@ namespace Project_Euler
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(Problem4().ToString());
+            Console.WriteLine(Problem5().ToString());
             Console.ReadKey();
         }
 
@@ -86,6 +86,13 @@ namespace Project_Euler
                     if (isPalindrome) palindromes.Add(product);
                 }
             return palindromes.Last();
+        }
+
+        static int Problem5()
+        //2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
+        //What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
+        {
+            return 0;
         }
 
     }
