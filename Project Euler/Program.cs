@@ -10,7 +10,10 @@ namespace Project_Euler
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(Problem10().ToString());
+            System.Diagnostics.Stopwatch stopwatch = System.Diagnostics.Stopwatch.StartNew();
+            Console.WriteLine(Problem10());
+            stopwatch.Stop();
+            Console.WriteLine("Problem solved in {0}", stopwatch.Elapsed);
             Console.ReadKey();
         }
 
@@ -177,22 +180,23 @@ namespace Project_Euler
             return -1;
         }
 
-        static int Problem10()
+        static long Problem10()
         //Find the sum of all the primes below two million.
         {
             List<long> primes = new List<long>();
-            int i = 2;
-            while (primes.Count() != 10001)
+            for (int i = 3; i < 2000000; i += 2) // Skipping evens for speed
             {
                 bool isPrime = true;
                 foreach (long prime in primes)
                 {
-                    if (i % prime == 0) isPrime = false;
+                    if (i % prime == 0)
+                    {
+                        break;
+                    }
                 }
                 if (isPrime) primes.Add(i);
-                i++;
             }
-            return 0;
+            return primes.Sum() + 2; // Account for 2 not being in primes
         }
     }
 }
