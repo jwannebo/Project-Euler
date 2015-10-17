@@ -191,6 +191,7 @@ namespace Project_Euler
                 {
                     if (i % prime == 0)
                     {
+                        isPrime = false;
                         break;
                     }
                 }
