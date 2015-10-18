@@ -257,7 +257,25 @@ namespace Project_Euler
                 }
             }
 
+            // NW/SE Diagonals
+            for (int i = 0; i < rows - 3; i++)
+            {
+                for (int j = 0; j < cols-3; j++)
+                {
+                    int product = grid[i][j] * grid[i + 1][j +1] * grid[i + 2][j +2] * grid[i + 3][j +3];
+                    if (product > maxProduct) maxProduct = product;
+                }
+            }
 
+            // NE/SW Diagonals
+            for (int i = 3; i < rows; i++)
+            {
+                for (int j = 0; j < cols - 3; j++)
+                {
+                    int product = grid[i][j] * grid[i - 1][j + 1] * grid[i - 2][j + 2] * grid[i - 3][j + 3];
+                    if (product > maxProduct) maxProduct = product;
+                }
+            }
 
             return maxProduct;
         }
