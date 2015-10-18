@@ -237,7 +237,15 @@ namespace Project_Euler
 
             int maxProduct = -1;
 
-
+            // Rows
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < cols - 3; j++)
+                {
+                    int product = grid[i][j] * grid[i][j + 1] * grid[i][j + 2] * grid[i][j + 3];
+                    if (product > maxProduct) maxProduct = product;
+                }
+            }
 
             return maxProduct;
         }
