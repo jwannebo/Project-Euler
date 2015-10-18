@@ -247,6 +247,18 @@ namespace Project_Euler
                 }
             }
 
+            // Cols
+            for (int i = 0; i < rows - 3; i++)
+            {
+                for (int j = 0; j < cols; j++)
+                {
+                    int product = grid[i][j] * grid[i + 1][j] * grid[i + 2][j] * grid[i + 3][j];
+                    if (product > maxProduct) maxProduct = product;
+                }
+            }
+
+
+
             return maxProduct;
         }
     }
