@@ -280,10 +280,26 @@ namespace Project_Euler
             return maxProduct;
         }
 
-        static int Problem12()
-        // What is the value of the first triangle number to have over five hundred divisors?
+        static long Problem12()
+        // What is the value of the first triangle number to have over five hundred divisors? (including 1 and itself)
         {
-            return 0;
+            Func<long, int> NumDividers = x =>
+              {
+                  int dividers = 0;
+                  for (int i = 1; i <= x; i++)
+                  {
+                      if (x % i == 0) dividers++;
+                  }
+                  return dividers;
+              };
+
+            int j = 2;
+            long triangle = 1;
+            while (NumDividers(triangle) < 501)
+            {
+                triangle += j++;
+            }
+            return triangle;
         }
     }
 }
