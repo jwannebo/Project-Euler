@@ -284,11 +284,20 @@ namespace Project_Euler
         // What is the value of the first triangle number to have over five hundred divisors? (including 1 and itself)
         {
             Func<long, int> NumDividers = x =>
-              {
-                  int dividers = 0;
-                  for (int i = 1; i <= x; i++)
+              { // number of dividers for N = x^a * y^b * z^c is (a+1)(b+1)(c+1) 
+                  int dividers = 1;
+                  long remainder = x;
+                  int i = 2;
+                  while (remainder != 1)
                   {
-                      if (x % i == 0) dividers++;
+                      int total = 1; // accounts for the + 1
+                      while ( remainder % i == 0)
+                      {
+                          remainder /= i;
+                          total++;
+                      }
+                      dividers *= total;
+                      i++;
                   }
                   return dividers;
               };
