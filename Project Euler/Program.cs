@@ -11,7 +11,7 @@ namespace Project_Euler
         static void Main(string[] args)
         {
             System.Diagnostics.Stopwatch stopwatch = System.Diagnostics.Stopwatch.StartNew();
-            Console.WriteLine(Problem11());
+            Console.WriteLine(Problem12());
             stopwatch.Stop();
             Console.WriteLine("Problem solved in {0}", stopwatch.Elapsed);
             Console.ReadKey();
@@ -278,6 +278,12 @@ namespace Project_Euler
             }
 
             return maxProduct;
+        }
+
+        static int Problem12()
+        // What is the value of the first triangle number to have over five hundred divisors?
+        {
+            return 0;
         }
     }
 }
