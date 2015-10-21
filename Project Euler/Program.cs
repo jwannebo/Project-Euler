@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,7 +13,7 @@ namespace Project_Euler
         static void Main(string[] args)
         {
             System.Diagnostics.Stopwatch stopwatch = System.Diagnostics.Stopwatch.StartNew();
-            Console.WriteLine(Problem14());
+            Console.WriteLine(Problem15());
             stopwatch.Stop();
             Console.WriteLine("Problem solved in {0}", stopwatch.Elapsed);
             Console.ReadKey();
@@ -455,7 +457,19 @@ namespace Project_Euler
         static long Problem15()
         
         {
-            return 137846528820;
+            string appID = Console.ReadLine(); //My git is public
+            string problemString = "40!/(20!^2)";
+            WebRequest request = WebRequest.Create(
+                "http://api.wolframalpha.com/v2/query?" + 
+                "appid=" + appID +
+                "&input=" +  WebUtility.UrlEncode(problemString) + 
+                "&format=plaintext");
+            WebResponse response = request.GetResponse();
+            using(StreamReader stream = new StreamReader(response.GetResponseStream()))
+            {
+                Console.WriteLine(stream.ReadToEnd());
+            }
+            return 0;
         }
 
     }
