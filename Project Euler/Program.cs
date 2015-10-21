@@ -456,25 +456,34 @@ namespace Project_Euler
         }
 
         static long Problem15()
-        
+        //Starting in the top left corner of a 2×2 grid, and only being able to move to the right and down,
+        //   there are exactly 6 routes to the bottom right corner.
+        //How many such routes are there through a 20×20 grid?
         {
+            string problemString = "40!/(20!^2)"; //This is the solution to the problem
+
+            long toReturn = 0;
             string appID = Console.ReadLine(); //My git is public
-            string problemString = "40!/(20!^2)";
             WebRequest request = WebRequest.Create(
                 "http://api.wolframalpha.com/v2/query?" + 
                 "appid=" + appID +
                 "&input=" +  WebUtility.UrlEncode(problemString) + 
                 "&format=plaintext");
             WebResponse response = request.GetResponse();
+
             using (StreamReader stream = new StreamReader(response.GetResponseStream()))
                 using (XmlReader xml = XmlReader.Create(stream, new XmlReaderSettings() {IgnoreWhitespace = true }))
             {
                 xml.MoveToContent();
-                xml.ReadStartElement("queryresult");
-                if (xml.GetAttribute("success") != "true" || xml.GetAttribute("error") != "false") throw new WebException();
-
+                if (xml.Name == "queryresult" && xml["success"] == "true" && xml["error"] == "false")
+                {
+                    while (xml.Read() && xml["title"] != "Result") ; //Read until we get to the result or EOF
+                    if (xml.ReadToDescendant("plaintext"))
+                        toReturn = xml.ReadElementContentAsLong();
+                    else throw new WebException();
+                } else throw new WebException();
             };
-            return 0;
+            return toReturn;
         }
 
     }
