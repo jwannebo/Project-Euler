@@ -287,8 +287,7 @@ namespace Project_Euler
               { // number of dividers for N = x^a * y^b * z^c is (a+1)(b+1)(c+1) 
                   int dividers = 1;
                   long remainder = x;
-                  int i = 2;
-                  while (remainder != 1)
+                  for ( int i = 2;  remainder != 1; i++)
                   {
                       int total = 1; // accounts for the + 1
                       while ( remainder % i == 0)
@@ -297,7 +296,6 @@ namespace Project_Euler
                           total++;
                       }
                       dividers *= total;
-                      i++;
                   }
                   return dividers;
               };
