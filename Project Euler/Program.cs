@@ -11,7 +11,7 @@ namespace Project_Euler
         static void Main(string[] args)
         {
             System.Diagnostics.Stopwatch stopwatch = System.Diagnostics.Stopwatch.StartNew();
-            Console.WriteLine(Problem13());
+            Console.WriteLine(Problem14());
             stopwatch.Stop();
             Console.WriteLine("Problem solved in {0}", stopwatch.Elapsed);
             Console.ReadKey();
@@ -433,6 +433,12 @@ namespace Project_Euler
             }
             //Get and return the first 10 digits of the sum
             return long.Parse(parsedData[0].Sum().ToString().Substring(0, 10));
+        }
+
+        static long Problem14()
+        //Which starting number, under one million, produces the longest Collatz chain?
+        {
+            return 0;
         }
 
     }
