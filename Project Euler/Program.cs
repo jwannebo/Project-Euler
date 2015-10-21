@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace Project_Euler
 {
@@ -465,10 +466,14 @@ namespace Project_Euler
                 "&input=" +  WebUtility.UrlEncode(problemString) + 
                 "&format=plaintext");
             WebResponse response = request.GetResponse();
-            using(StreamReader stream = new StreamReader(response.GetResponseStream()))
+            using (StreamReader stream = new StreamReader(response.GetResponseStream()))
+                using (XmlReader xml = XmlReader.Create(stream, new XmlReaderSettings() {IgnoreWhitespace = true }))
             {
-                Console.WriteLine(stream.ReadToEnd());
-            }
+                xml.MoveToContent();
+                xml.ReadStartElement("queryresult");
+                if (xml.GetAttribute("success") != "true" || xml.GetAttribute("error") != "false") throw new WebException();
+
+            };
             return 0;
         }
 
