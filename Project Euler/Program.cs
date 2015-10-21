@@ -415,24 +415,24 @@ namespace Project_Euler
 53503534226472524250874054075591789781264330331690";
 
             //Create a data structure such that we have five lists of 100 ten-digit numbers
-            //Such that concating sublists[0-4][x] will give the xth number in the input list
-            List<long>[] subLists = new List<long>[5];
+            //Such that concating parsedData[0-4][x] will give the xth number in the input list
+            List<long>[] parsedData = new List<long>[5];
             foreach( string number in numbers.Split(new string[] { Environment.NewLine }, StringSplitOptions.None))
             {
                 for (int i = 0; i < 5; i++)
                 {
-                    if (subLists[i] == null) subLists[i] = new List<long>();
-                    subLists[i].Add(long.Parse(number.Substring(i * 10, 10)));
+                    if (parsedData[i] == null) parsedData[i] = new List<long>();
+                    parsedData[i].Add(long.Parse(number.Substring(i * 10, 10)));
                 }
             }
 
             //Now we sum each subpart of the numbers, appending the carry to the set of next higher significance
-            for (int i = subLists.Count() - 1; i > 0; i--) //Skipping the most significant, since we don't need to deal with its carry
+            for (int i = parsedData.Count() - 1; i > 0; i--) //Skipping the most significant, since we don't need to deal with its carry
             {
-                subLists[i - 1].Add(subLists[i].Sum() / 10000000000);
+                parsedData[i - 1].Add(parsedData[i].Sum() / 10000000000);
             }
             //Get and return the first 10 digits of the sum
-            return long.Parse(subLists[0].Sum().ToString().Substring(0, 10));
+            return long.Parse(parsedData[0].Sum().ToString().Substring(0, 10));
         }
 
     }
