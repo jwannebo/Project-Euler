@@ -425,7 +425,14 @@ namespace Project_Euler
                     subLists[i].Add(long.Parse(number.Substring(i * 10, 10)));
                 }
             }
-            return 0;
+
+            //Now we sum each subpart of the numbers, appending the carry to the set of next higher significance
+            for (int i = subLists.Count() - 1; i > 0; i--) //Skipping the most significant, since we don't need to deal with its carry
+            {
+                subLists[i - 1].Add(subLists[i].Sum() / 10000000000);
+            }
+            //Get and return the first 10 digits of the sum
+            return long.Parse(subLists[0].Sum().ToString().Substring(0, 10));
         }
 
     }
