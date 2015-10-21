@@ -438,7 +438,24 @@ namespace Project_Euler
         static long Problem14()
         //Which starting number, under one million, produces the longest Collatz chain?
         {
-            return 0;
+            int longestNumber = 0, longestLength = 0;
+            for (int i = 1; i < 1000001; i++)
+            {
+                int length = 0;
+                for (long chain = i; chain != 1; chain = chain % 2 == 0 ? chain / 2 : 3 * chain + 1) length++;
+                if (length > longestLength)
+                {
+                    longestLength = length;
+                    longestNumber = i;
+                }
+            }
+            return longestNumber;
+        }
+
+        static long Problem15()
+        
+        {
+            return 137846528820;
         }
 
     }
