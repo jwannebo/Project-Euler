@@ -498,6 +498,8 @@ namespace Project_Euler
                 sum += (int)char.GetNumericValue(c);
             }
             return sum;
+            //As a oneliner
+            //return Array.ConvertAll<char, int>(BigInteger.Pow(2, 1000).ToString().ToCharArray(), new Converter<char, int>(c => (int)char.GetNumericValue(c))).Sum();
         }
 
     }
