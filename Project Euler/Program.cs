@@ -6,6 +6,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using System.Numerics;
 
 namespace Project_Euler
 {
@@ -14,7 +15,7 @@ namespace Project_Euler
         static void Main(string[] args)
         {
             System.Diagnostics.Stopwatch stopwatch = System.Diagnostics.Stopwatch.StartNew();
-            Console.WriteLine(Problem15());
+            Console.WriteLine(Problem16());
             stopwatch.Stop();
             Console.WriteLine("Problem solved in {0}", stopwatch.Elapsed);
             Console.ReadKey();
@@ -484,6 +485,19 @@ namespace Project_Euler
                 } else throw new WebException();
             };
             return toReturn;
+        }
+
+        static long Problem16()
+        // Add the digits of 2^1000
+        {
+            string bigIntStr = BigInteger.Pow(2, 1000).ToString();
+
+            long sum = 0;
+            foreach (char c in bigIntStr.ToCharArray())
+            {
+                sum += (int)char.GetNumericValue(c);
+            }
+            return sum;
         }
 
     }
