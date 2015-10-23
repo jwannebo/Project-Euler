@@ -15,7 +15,7 @@ namespace Project_Euler
         static void Main(string[] args)
         {
             System.Diagnostics.Stopwatch stopwatch = System.Diagnostics.Stopwatch.StartNew();
-            Console.WriteLine(Problem16());
+            Console.WriteLine(Problem17());
             stopwatch.Stop();
             Console.WriteLine("Problem solved in {0}", stopwatch.Elapsed);
             Console.ReadKey();
@@ -500,6 +500,12 @@ namespace Project_Euler
             return sum;
             //As a oneliner
             //return Array.ConvertAll<char, int>(BigInteger.Pow(2, 1000).ToString().ToCharArray(), new Converter<char, int>(c => (int)char.GetNumericValue(c))).Sum();
+        }
+
+        static long Problem17()
+        //If all the numbers from 1 to 1000 (one thousand) inclusive were written out in words, how many letters would be used? 
+        {
+            return 0;
         }
 
     }
