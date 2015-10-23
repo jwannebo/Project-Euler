@@ -505,7 +505,76 @@ namespace Project_Euler
         static long Problem17()
         //If all the numbers from 1 to 1000 (one thousand) inclusive were written out in words, how many letters would be used? 
         {
-            return 0;
+            Func<int, int> letterCount = null; // Allow for recursion
+            letterCount = x =>
+            {
+                if (x == 1000) return 11; // one thousand
+
+                int r = 0;
+                int q = Math.DivRem(x, 100, out r);
+
+                if (q != 0)
+                    if (r == 0)
+                        return letterCount(q) + 7; // [something] hundred
+                    else
+                        return letterCount(q) + 7 + 3 + letterCount(r); //[something] hundred and [something]
+
+                if(x < 20)
+                    switch (x)
+                    {
+                        case 1:
+                        case 2:
+                        case 6:
+                        case 10:
+                            return 3;
+                        case 4:
+                        case 5:
+                        case 9:
+                            return 4;
+                        case 3:
+                        case 7:
+                        case 8:
+                            return 5;
+                        case 11:
+                        case 12:
+                            return 6;
+                        case 15:
+                        case 16:
+                            return 7;
+                        case 13:
+                        case 14:
+                        case 18:
+                        case 19:
+                            return 8;
+                        case 17:
+                            return 9;
+                        case 0:
+                            return 0;
+                        default:
+                            throw new Exception();
+                    }
+
+                q = Math.DivRem(x, 10, out r);
+                switch (q)
+                {
+                    case 6:
+                    case 5:
+                    case 4:
+                        return 5 + letterCount(r);
+                    case 9:
+                    case 8:
+                    case 3:
+                    case 2:
+                        return 6 + letterCount(r);
+                    case 7:
+                        return 7 + letterCount(r);
+                    default:
+                        throw new Exception();
+                }
+            };
+            int sum = 0;
+            for (int i = 1; i <= 1000; i++) sum += letterCount(i);
+            return sum;
         }
 
     }
