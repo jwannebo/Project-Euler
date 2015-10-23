@@ -15,7 +15,7 @@ namespace Project_Euler
         static void Main(string[] args)
         {
             System.Diagnostics.Stopwatch stopwatch = System.Diagnostics.Stopwatch.StartNew();
-            Console.WriteLine(Problem17());
+            Console.WriteLine(Problem7());
             stopwatch.Stop();
             Console.WriteLine("Problem solved in {0}", stopwatch.Elapsed);
             Console.ReadKey();
@@ -142,7 +142,11 @@ namespace Project_Euler
                 bool isPrime = true;
                 foreach (long prime in primes)
                 {
-                    if (i % prime == 0) isPrime = false;
+                    if (i % prime == 0)
+                    {
+                        isPrime = false;
+                        break;
+                    }
                 }
                 if (isPrime) primes.Add(i);
                 i++;
