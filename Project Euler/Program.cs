@@ -15,7 +15,7 @@ namespace Project_Euler
         static void Main(string[] args)
         {
             System.Diagnostics.Stopwatch stopwatch = System.Diagnostics.Stopwatch.StartNew();
-            Console.WriteLine(Problem7());
+            Console.WriteLine(Problem18());
             stopwatch.Stop();
             Console.WriteLine("Problem solved in {0}", stopwatch.Elapsed);
             Console.ReadKey();
@@ -581,5 +581,15 @@ namespace Project_Euler
             return sum;
         }
 
+        static long Problem18()
+        //Find the maximum total from top to bottom of the triangle below:
+        {
+            string triangle =
+@"3
+7 4
+2 4 6
+8 5 9 3";// TODO Real problem
+            return 0;
+        }
     }
 }
