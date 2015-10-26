@@ -589,6 +589,11 @@ namespace Project_Euler
 7 4
 2 4 6
 8 5 9 3";// TODO Real problem
+            var nodes = new List<List<int>>();
+            foreach (string line in triangle.Split(new string[] { Environment.NewLine }, StringSplitOptions.None ))
+            {
+                nodes.Add( new List<int>( Array.ConvertAll<string, int>( line.Split(' '), int.Parse ) ) );
+            }
             return 0;
         }
     }
