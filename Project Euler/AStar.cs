@@ -1,12 +1,111 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Priority_Queue;
 
 
 //Using http://www.redblobgames.com/pathfinding/a-star/implementation.html as a base
 namespace Project_Euler
-{
+{ //https://gist.github.com/ashish01/8593936
+    class MinHeap<T> where T : IComparable<T>
+    {
+        private List<T> array = new List<T>();
+
+        public void Add(T element)
+        {
+            array.Add(element);
+            int c = array.Count - 1;
+            while (c > 0 && array[c].CompareTo(array[c / 2]) == -1)
+            {
+                T tmp = array[c];
+                array[c] = array[c / 2];
+                array[c / 2] = tmp;
+                c = c / 2;
+            }
+        }
+
+        public T RemoveMin()
+        {
+            T ret = array[0];
+            array[0] = array[array.Count - 1];
+            array.RemoveAt(array.Count - 1);
+
+            int c = 0;
+            while (c < array.Count)
+            {
+                int min = c;
+                if (2 * c + 1 < array.Count && array[2 * c + 1].CompareTo(array[min]) == -1)
+                    min = 2 * c + 1;
+                if (2 * c + 2 < array.Count && array[2 * c + 2].CompareTo(array[min]) == -1)
+                    min = 2 * c + 2;
+
+                if (min == c)
+                    break;
+                else
+                {
+                    T tmp = array[c];
+                    array[c] = array[min];
+                    array[min] = tmp;
+                    c = min;
+                }
+            }
+
+            return ret;
+        }
+
+        public T Peek()
+        {
+            return array[0];
+        }
+
+        public int Count
+        {
+            get
+            {
+                return array.Count;
+            }
+        }
+    }
+
+    class PriorityQueue<T>
+    { //https://gist.github.com/ashish01/8593936
+        internal class Node : IComparable<Node>
+        {
+            public int Priority;
+            public T O;
+            public int CompareTo(Node other)
+            {
+                return Priority.CompareTo(other.Priority);
+            }
+        }
+
+        private MinHeap<Node> minHeap = new MinHeap<Node>();
+
+        public void Add(int priority, T element)
+        {
+            minHeap.Add(new Node() { Priority = priority, O = element });
+        }
+
+        public T RemoveMin()
+        {
+            return minHeap.RemoveMin().O;
+        }
+
+        public T Peek()
+        {
+            return minHeap.Peek().O;
+        }
+
+        public int Count
+        {
+            get
+            {
+                return minHeap.Count;
+            }
+        }
+    }
+
+
+
     class AStar
     {
         public interface WeightedGraph<L>
@@ -14,7 +113,7 @@ namespace Project_Euler
             int Cost(Location a, Location b);
             IEnumerable<Location> Neighbors(Location id);
         }
-        public class Location : PriorityQueueNode
+        public class Location
         {
             public readonly int x, y;
             public Location(int x, int y)
@@ -130,17 +229,17 @@ namespace Project_Euler
                 return Math.Abs(a.x - b.x) + Math.Abs(a.y - b.y);
             }
 
-            public AStarSearch(WeightedGraph<Location> graph, Location start, Location goal, int heapsize)
+            public AStarSearch(WeightedGraph<Location> graph, Location start, Location goal)
             {
-                var frontier = new HeapPriorityQueue<Location>(heapsize);
-                frontier.Enqueue(start, 0);
+                var frontier = new PriorityQueue<Location>();
+                frontier.Add(0, start);
 
                 cameFrom[start] = start;
                 costSoFar[start] = 0;
 
                 while (frontier.Count > 0)
                 {
-                    var current = frontier.Dequeue();
+                    var current = frontier.RemoveMin();
 
                     if (current.Equals(goal))
                     {
@@ -156,7 +255,7 @@ namespace Project_Euler
                         {
                             costSoFar[next] = newCost;
                             int priority = newCost + Heuristic(next, goal);
-                            frontier.Enqueue(next, priority);
+                            frontier.Add(priority, next);
                             cameFrom[next] = current;
                         }
                     }

@@ -594,7 +594,9 @@ namespace Project_Euler
             {
                 nodes.Add( new List<int>( Array.ConvertAll<string, int>( line.Split(' '), int.Parse ) ) );
             }
-            return 0;
+
+            var astar = new AStar.AStarSearch(new AStar.TriangleGrid(nodes), AStar.TriangleGrid.start, AStar.TriangleGrid.end);
+            return astar.costSoFar[AStar.TriangleGrid.end];
         }
     }
 }
