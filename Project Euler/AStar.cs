@@ -55,18 +55,14 @@ namespace Project_Euler
             };
 
 
-            public static Location start { get; private set; }
-            public static Location end { get; private set; }
+            public static Location start { get; private set; } = new Location(0, 0);
+            public static Location end { get; private set; } = new Location(int.MaxValue, int.MaxValue);
             public int width { get; private set; }
             public int height { get; private set;}
             private Dictionary<Location, int> costs = new Dictionary<Location, int>();
 
             public TriangleGrid(List<List<int>> nodes)
             {
-                start = new Location(0, 0);
-                end = new Location(int.MaxValue, int.MaxValue);
-
-
                 int lastRowSize = 0;
                 for (int rowNum = 0; rowNum < nodes.Count(); rowNum++)
                 {
