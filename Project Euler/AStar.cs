@@ -42,6 +42,11 @@ namespace Project_Euler
             {
                 return x ^ y;
             }
+
+            public override string ToString()
+            {
+                return x.ToString() + "," + y.ToString();
+            }
         }
 
 
@@ -71,8 +76,8 @@ namespace Project_Euler
                         throw new ArgumentException("nodes must be triangular");
                     AddRow(row, rowNum);
                 }
-                this.width = lastRowSize;
-                this.height = nodes.Count();
+                width = lastRowSize;
+                height = nodes.Count();
             }
 
             private void AddRow(List<int> row, int rowNum)
@@ -86,8 +91,7 @@ namespace Project_Euler
 
             public bool InBounds(Location id)
             {
-                //TODO double check this
-                return 0 <= id.x && id.x < id.y
+                return 0 <= id.x && id.x <= id.y
                     && 0 <= id.y && id.y < height;
             }
 
