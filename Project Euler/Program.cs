@@ -15,7 +15,7 @@ namespace Project_Euler
         static void Main(string[] args)
         {
             System.Diagnostics.Stopwatch stopwatch = System.Diagnostics.Stopwatch.StartNew();
-            Console.WriteLine(Problem19());
+            Console.WriteLine(Problem20());
             stopwatch.Stop();
             Console.WriteLine("Problem solved in {0}", stopwatch.Elapsed);
             Console.ReadKey();
@@ -632,6 +632,18 @@ namespace Project_Euler
                 }
             }
             return total1stSundays;
+        }
+
+        static int Problem20()
+        //Find the sum of the digits in the number 100!
+        {
+            Func<int, BigInteger> fact = x =>
+            {
+                BigInteger factorial = 1;
+                for (int i = 1; i <= x; i++) factorial = BigInteger.Multiply(factorial, i);
+                return factorial;
+            };
+            return Array.ConvertAll<char, int>(fact(100).ToString().ToCharArray(), new Converter<char, int>(c => (int)char.GetNumericValue(c))).Sum();
         }
 
     }
