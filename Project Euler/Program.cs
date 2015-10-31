@@ -17,7 +17,7 @@ namespace Project_Euler
         static void Main(string[] args)
         {
             System.Diagnostics.Stopwatch stopwatch = System.Diagnostics.Stopwatch.StartNew();
-            string output = Problem20().ToString();
+            string output = Problem21().ToString();
             stopwatch.Stop();
             Console.WriteLine(output);
             Clipboard.SetText(output);
@@ -648,6 +648,37 @@ namespace Project_Euler
                 return factorial;
             };
             return Array.ConvertAll<char, int>(fact(100).ToString().ToCharArray(), new Converter<char, int>(c => (int)char.GetNumericValue(c))).Sum();
+        }
+
+        static int Problem21()
+        //Let d(n) be defined as the sum of proper divisors of n (numbers less than n which divide evenly into n).
+        //If d(a) = b and d(b) = a, where a ≠ b, then a and b are an amicable pair and each of a and b are called amicable numbers.
+        //Evaluate the sum of all the amicable numbers under 10000.
+        {
+            Func<int, int> sumOfDivisors = x =>
+            {
+                int divSum = 1;
+                for (int j = 2; j < x / 2 + 1; j++)
+                    if (x % j == 0) divSum += j;
+                return divSum;
+            };
+            var checkedAmicables = new List<int>();
+            int sum = 0;
+            for (int i = 1; i < 10001; i++)
+            {
+                if (checkedAmicables.Contains(i))
+                {
+                    sum += i;
+                    continue;
+                }
+                int possibleAmicable = sumOfDivisors(i);
+                if (possibleAmicable != i && sumOfDivisors(possibleAmicable) == i)
+                {
+                    checkedAmicables.Add(possibleAmicable);
+                    sum += i;
+                }
+            }
+            return sum;
         }
 
     }
