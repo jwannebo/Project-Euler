@@ -7,16 +7,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Numerics;
+using System.Windows.Forms;
 
 namespace Project_Euler
 {
     class Program
     {
+        [STAThread]
         static void Main(string[] args)
         {
             System.Diagnostics.Stopwatch stopwatch = System.Diagnostics.Stopwatch.StartNew();
-            Console.WriteLine(Problem20());
+            string output = Problem20().ToString();
             stopwatch.Stop();
+            Console.WriteLine(output);
+            Clipboard.SetText(output);
             Console.WriteLine("Problem solved in {0}", stopwatch.Elapsed);
             Console.ReadKey();
         }
