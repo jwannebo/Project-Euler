@@ -17,7 +17,7 @@ namespace Project_Euler
         static void Main(string[] args)
         {
             System.Diagnostics.Stopwatch stopwatch = System.Diagnostics.Stopwatch.StartNew();
-            string output = Problem21().ToString();
+            string output = Problem22().ToString();
             stopwatch.Stop();
             Console.WriteLine(output);
             Clipboard.SetText(output);
@@ -679,6 +679,13 @@ namespace Project_Euler
                 }
             }
             return sum;
+        }
+
+        static long Problem22()
+        //Working out the alphabetical value for each name, multiply this value by its alphabetical position in the list to obtain a name score.
+        //What is the total of all the name scores in the file?
+        {
+            return 0;
         }
 
     }
