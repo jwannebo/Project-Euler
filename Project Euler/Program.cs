@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Numerics;
 using System.Windows.Forms;
+using System.Reflection;
 
 namespace Project_Euler
 {
@@ -685,7 +686,13 @@ namespace Project_Euler
         //Working out the alphabetical value for each name, multiply this value by its alphabetical position in the list to obtain a name score.
         //What is the total of all the name scores in the file?
         {
-            return 0;
+            var names = new SortedSet<string>();
+            using (Stream s = Assembly.GetExecutingAssembly().GetManifestResourceStream("Project_Euler.p022_names.txt"))
+                using (var fileReader = new StreamReader(s))
+            {
+                Console.Write(fileReader.ReadToEnd());
+            }
+                return 0;
         }
 
     }
