@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project Euler", "Project Euler\Project Euler.csproj", "{0F44DDDA-EC93-4951-949E-72AA337BE797}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E6E26737-BD9B-40EC-8649-B95DD64A33F3}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Desktop\p022_names.txt = ..\..\..\Desktop\p022_names.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
