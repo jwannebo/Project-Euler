@@ -687,12 +687,27 @@ namespace Project_Euler
         //What is the total of all the name scores in the file?
         {
             var names = new SortedSet<string>();
+            int sum = 0;
+
             using (Stream s = Assembly.GetExecutingAssembly().GetManifestResourceStream("Project_Euler.p022_names.txt"))
                 using (var fileReader = new StreamReader(s))
             {
-                Console.Write(fileReader.ReadToEnd());
+                string fileString = fileReader.ReadLine();
+                foreach (string name in fileString.Split(','))
+                {
+                    names.Add(name.Trim('"'));
+                }
             }
-                return 0;
+            for (int i = 0; i < names.Count(); i++)
+            {
+                int nameSum = 0;
+                foreach (char c in names.ElementAt(i).ToUpper())
+                {
+                    nameSum += c - 64; // A is char 65
+                }
+                sum += nameSum * (i + 1);
+            }
+            return sum;
         }
 
     }
