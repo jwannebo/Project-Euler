@@ -18,7 +18,7 @@ namespace Project_Euler
         static void Main(string[] args)
         {
             System.Diagnostics.Stopwatch stopwatch = System.Diagnostics.Stopwatch.StartNew();
-            string output = Problem23().ToString();
+            string output = Problem24().ToString();
             stopwatch.Stop();
             Console.WriteLine(output);
             Clipboard.SetText(output);
@@ -710,7 +710,7 @@ namespace Project_Euler
             return sum;
         }
 
-        static int Problem23()
+        static long Problem24()
         //What is the millionth lexicographic permutation of the digits 0, 1, 2, 3, 4, 5, 6, 7, 8 and 9?
         {
             return 0;
