@@ -18,7 +18,7 @@ namespace Project_Euler
         static void Main(string[] args)
         {
             System.Diagnostics.Stopwatch stopwatch = System.Diagnostics.Stopwatch.StartNew();
-            string output = Problem24().ToString();
+            string output = Problem25().ToString();
             stopwatch.Stop();
             Console.WriteLine(output);
             Clipboard.SetText(output);
@@ -713,27 +713,33 @@ namespace Project_Euler
         static long Problem24()
         //What is the millionth lexicographic permutation of the digits 0, 1, 2, 3, 4, 5, 6, 7, 8 and 9?
         {
-            var sortedPermSet = new SortedSet<long>();
+            int counter = 0;
             var digitList = new List<int>(Enumerable.Range(0, 10));
-            Func<List<int>, string, bool> createSet = null;
-            createSet = (digits, strSoFar) =>
+            Func<List<int>, string, long> findPermutation = null;
+            findPermutation = (digits, strSoFar) =>
             {
                 if (digits.Count == 0)
                 {
-                    sortedPermSet.Add(long.Parse(strSoFar));
-                    return false;
+                    return ++counter == 1000000 ? long.Parse(strSoFar) : 0;
                 }
-                if (digitList.Count == 1000000) return false;
+                long toReturn = 0;
                 foreach (int digit in digits)
                 {
                     var remainingDigits = new List<int>(digits);
                     remainingDigits.Remove(digit);
-                    createSet(remainingDigits, strSoFar + digit.ToString());
+                    toReturn += findPermutation(remainingDigits, strSoFar + digit.ToString());
                 }
-                return true;
+                return toReturn;
             };
-            createSet(digitList, "");
-            return sortedPermSet.ElementAt(999999);
+            return findPermutation(digitList, "");
+        }
+
+        static int Problem25()
+        //What is the index of the first term in the Fibonacci sequence to contain 1000 digits?
+        {
+            int index = 1;
+            for (BigInteger last = 0, current = 1; current.ToString().Count() < 1000; current = last + (last = current)) index++;
+            return index;
         }
     }
 }
