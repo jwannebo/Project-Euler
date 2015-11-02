@@ -713,7 +713,27 @@ namespace Project_Euler
         static long Problem24()
         //What is the millionth lexicographic permutation of the digits 0, 1, 2, 3, 4, 5, 6, 7, 8 and 9?
         {
-            return 0;
+            var sortedPermSet = new SortedSet<long>();
+            var digitList = new List<int>(Enumerable.Range(0, 10));
+            Func<List<int>, string, bool> createSet = null;
+            createSet = (digits, strSoFar) =>
+            {
+                if (digits.Count == 0)
+                {
+                    sortedPermSet.Add(long.Parse(strSoFar));
+                    return false;
+                }
+                if (digitList.Count == 1000000) return false;
+                foreach (int digit in digits)
+                {
+                    var remainingDigits = new List<int>(digits);
+                    remainingDigits.Remove(digit);
+                    createSet(remainingDigits, strSoFar + digit.ToString());
+                }
+                return true;
+            };
+            createSet(digitList, "");
+            return sortedPermSet.ElementAt(999999);
         }
     }
 }
