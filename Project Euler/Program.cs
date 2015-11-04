@@ -18,7 +18,7 @@ namespace Project_Euler
         static void Main(string[] args)
         {
             System.Diagnostics.Stopwatch stopwatch = System.Diagnostics.Stopwatch.StartNew();
-            string output = Problem25().ToString();
+            string output = Problem26().ToString();
             stopwatch.Stop();
             Console.WriteLine(output);
             Clipboard.SetText(output);
@@ -740,6 +740,13 @@ namespace Project_Euler
             int index = 1;
             for (BigInteger last = 0, current = 1; current.ToString().Count() < 1000; current = last + (last = current)) index++;
             return index;
+        }
+
+        static int Problem26()
+        //Find the value of d < 1000 for which 1/d contains the longest recurring cycle in its decimal fraction part.
+        {
+
+            return 0;
         }
     }
 }
