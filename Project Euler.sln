@@ -8,9 +8,13 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E6E26737-BD9B-40EC-8649-B95DD64A33F3}"
 	ProjectSection(SolutionItems) = preProject
 		..\..\..\Desktop\p022_names.txt = ..\..\..\Desktop\p022_names.txt
+		Performance1.psess = Performance1.psess
 	EndProjectSection
 EndProject
 Global
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU

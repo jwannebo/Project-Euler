@@ -796,9 +796,33 @@ namespace Project_Euler
         //          n² + an + b, where |a| < 1000 and |b| < 1000
         //that produces the maximum number of primes for consecutive values of n, starting with n = 0.
         {
-            int a = 0, b = 0;
+            int maxA = 0, maxB = 0, maxSum = 0;
+            Func<int, bool> isPrime = x =>
+            {
+                if (x < 3 || x % 2 == 0) return false;
+                //Linq is silly, but slow
+                //return Enumerable.Range(2, (int)Math.Sqrt(x)).Where(n => x % n == 0).Count() == 0;
+                for (int n = 3; n < Math.Sqrt(x); n += 2)
+                {
+                    if (x % n == 0) return false;
+                }
+                return true;
+            };
 
-            return a * b;
+            for (int a = -999; a < 1000; a++) 
+                for(int b = -999; b < 1000; b++)
+                {
+                    int sum = 0;
+                    for (int n = 0; isPrime(n * n + a * n + b); n++) sum++;
+                    if (sum > maxSum)
+                    {
+                        maxA = a;
+                        maxB = b;
+                        maxSum = sum;
+                    }
+                }
+
+            return maxA * maxB;
         }
     }
 }
