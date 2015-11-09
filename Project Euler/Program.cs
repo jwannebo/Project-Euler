@@ -799,7 +799,7 @@ namespace Project_Euler
             int maxA = 0, maxB = 0, maxSum = 0;
             Func<int, bool> isPrime = x =>
             {
-                if (x < 3 || x % 2 == 0) return false;
+                if (x < 3 || x % 2 == 0) return x == 2;
                 //Linq is silly, but slow
                 //return Enumerable.Range(2, (int)Math.Sqrt(x)).Where(n => x % n == 0).Count() == 0;
                 for (int n = 3; n < Math.Sqrt(x); n += 2)
