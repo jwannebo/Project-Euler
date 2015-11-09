@@ -18,9 +18,10 @@ namespace Project_Euler
         static void Main(string[] args)
         {
             System.Diagnostics.Stopwatch stopwatch = System.Diagnostics.Stopwatch.StartNew();
-            string output = Problem26().ToString();
+            string output = Problem27().ToString();
             stopwatch.Stop();
             Console.WriteLine(output);
+            Console.Beep();
             Clipboard.SetText(output);
             Console.WriteLine("Problem solved in {0}", stopwatch.Elapsed);
             Console.ReadKey();
@@ -745,8 +746,59 @@ namespace Project_Euler
         static int Problem26()
         //Find the value of d < 1000 for which 1/d contains the longest recurring cycle in its decimal fraction part.
         {
+            int toReturn = 0, maxRepeats = 0;
 
-            return 0;
+            Func<string, int> findRepeatLength = n =>
+            {
+                for (int leaders = 0; leaders < 10; leaders++)
+                {
+                    for (int length = 1; length < 1000; length++)
+                    {
+                        string toFind = n.Substring(leaders, length);
+                        bool isRepeat = true;
+                        for(int next = leaders; next < n.Count() - leaders - next; next += length)
+                        {
+                            int index = n.IndexOf(toFind, next);
+                            if (index != next) isRepeat = false;
+                        }
+                        if (isRepeat) return length;
+
+                    }
+
+                }
+                return -1;
+            };
+
+
+
+            for (int i = 1; i < 1000; i++)
+            {
+                int numerator = 1, denominator = i;
+                var list = new List<char>();
+                while (numerator != 0 && list.Count < 2010) //The repeating portion of 1/d can never be > d-1. Added 10 for leading parts
+                {
+                    char x = Math.DivRem(10 * numerator, denominator, out numerator).ToString()[0];
+                    list.Add(x);
+                }
+                int repeats = findRepeatLength(new string(list.ToArray()));
+                if (maxRepeats < repeats)
+                {
+                    maxRepeats = repeats;
+                    toReturn = i;
+                }
+
+            }
+            return toReturn;
+        }
+
+        static int Problem27()
+        //Find the product of the coefficients, a and b, for the quadratic expression 
+        //          n² + an + b, where |a| < 1000 and |b| < 1000
+        //that produces the maximum number of primes for consecutive values of n, starting with n = 0.
+        {
+            int a = 0, b = 0;
+
+            return a * b;
         }
     }
 }
