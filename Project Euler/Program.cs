@@ -833,9 +833,14 @@ namespace Project_Euler
         //17 16 15 14 13
         //What is the sum of the numbers on the diagonals in a 1001 by 1001 spiral formed in the same way?
         {
-            int nesw = 0, nwse = 0;
-
-            return nesw + nwse;
+            int sum = 0, max = 25;
+            //Pattern is n+=(0, 4, 4, 8, 8, 12...)
+            //n += ((t = -t) > 0) ? i : i += 4
+            //increment n by i on all rounds, but increment i by 4 first on even rounds. t is used as a toggle since we can't declare a bool there
+            for (int n = 1, i = 0, t = 1; n <= max; n += ((t = -t) > 0) ? i : i += 4) sum += n;
+            //Pattern is n+=(0,2,4,6...)
+            for (int m = 1, j = 0; m <= max; m += (j += 2)) sum += m;
+            return sum - 1; // we count the center twice
         }
     }
 }
