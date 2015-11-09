@@ -18,7 +18,7 @@ namespace Project_Euler
         static void Main(string[] args)
         {
             System.Diagnostics.Stopwatch stopwatch = System.Diagnostics.Stopwatch.StartNew();
-            string output = Problem27().ToString();
+            string output = Problem28().ToString();
             stopwatch.Stop();
             Console.WriteLine(output);
             Console.Beep();
@@ -823,6 +823,19 @@ namespace Project_Euler
                 }
 
             return maxA * maxB;
+        }
+
+        static int Problem28()
+        //21 22 23 24 25
+        //20  7  8  9 10
+        //19  6  1  2 11
+        //18  5  4  3 12
+        //17 16 15 14 13
+        //What is the sum of the numbers on the diagonals in a 1001 by 1001 spiral formed in the same way?
+        {
+            int nesw = 0, nwse = 0;
+
+            return nesw + nwse;
         }
     }
 }
